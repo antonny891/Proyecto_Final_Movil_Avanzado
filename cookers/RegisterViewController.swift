@@ -1,49 +1,67 @@
-//
-//  RegisterViewController.swift
-//  cookers
-//
-//  Created by Michell Condori on 17/06/24.
-//
-
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
+class RegisterViewController: UIViewController {
 
-class RegisterViewController: UIViewController, UIScrollViewDelegate {
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var pageControl: UIPageControl!
-
-    // Opcional: Agrega las imágenes que deseas mostrar en el carrusel
-    let images = [UIImage(named: "mapa"), UIImage(named: "hombre"), UIImage(named: "comida")]
-
+    @IBOutlet weak var txtnombre: UITextField!
+    @IBOutlet weak var txtemail: UITextField!
+    @IBOutlet weak var txtpassword: UITextField!
+    
+    @IBOutlet weak var buttonregister: UIButton!
+    @IBOutlet weak var btnpreguntasesion: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Configura el UIScrollView
-        scrollView.delegate = self
-        scrollView.isPagingEnabled = true
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width * CGFloat(images.count), height: scrollView.frame.size.height)
-
-        // Configura el UIPageControl
-        pageControl.numberOfPages = images.count
-        pageControl.currentPage = 0
-        pageControl.pageIndicatorTintColor = UIColor.lightGray
-        pageControl.currentPageIndicatorTintColor = UIColor.black
-
-        // Opcional: Agrega las imágenes al UIScrollView
-        addImagesToScrollView()
     }
+    
+    @IBAction func btnpregunta(_ sender: Any) {
+        // Aquí puedes manejar la lógica para el botón de pregunta de sesión si es necesario
+    }
+    
+    @IBAction func btnregister(_ sender: Any) {
+        guard let nombre = txtnombre.text, !nombre.isEmpty,
+              let email = txtemail.text, !email.isEmpty,
+              let password = txtpassword.text, !password.isEmpty else {
+            // Manejar caso de campos vacíos
+            showAlert(title: "Error", message: "Por favor, completa todos los campos")
+            return
+        }
 
-    func addImagesToScrollView() {
-        for (index, image) in images.enumerated() {
-            let imageView = UIImageView(image: image)
-            imageView.frame = CGRect(x: scrollView.frame.size.width * CGFloat(index), y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
-            imageView.contentMode = .scaleAspectFit
-            scrollView.addSubview(imageView)
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                // Manejar error de creación de usuario
+                self.showAlert(title: "Error", message: "Error al crear usuario: \(error.localizedDescription)")
+                return
+            }
+
+            guard let uid = authResult?.user.uid else { return }
+
+            let ref = Database.database().reference()
+            ref.child("users").child(uid).setValue([
+                "nombre": nombre,
+                "email": email
+            ]) { error, _ in
+                if let error = error {
+                    // Manejar error al guardar los datos del usuario en Realtime Database
+                    self.showAlert(title: "Error", message: "Error al guardar los datos del usuario: \(error.localizedDescription)")
+                } else {
+                    // Usuario registrado y datos guardados exitosamente
+                    self.showAlert(title: "Éxito", message: "Usuario registrado y datos guardados exitosamente") {
+                        // Realizar la transición a HomeViewController
+                        self.performSegue(withIdentifier: "RegistroSegue", sender: nil)
+                    }
+                }
+            }
         }
     }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
-        pageControl.currentPage = Int(pageNumber)
+    
+    func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            completion?()
+        })
+        present(alertController, animated: true, completion: nil)
     }
 }
