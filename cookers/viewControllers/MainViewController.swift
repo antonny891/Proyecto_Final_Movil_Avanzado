@@ -55,7 +55,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @IBAction func SignUpPressed(_ sender: Any) {
-        // Asegúrate de que no haya otras vistas presentadas modalmente
+
         if let presentedVC = self.presentedViewController {
             presentedVC.dismiss(animated: true) {
                 self.presentLoginViewController()
@@ -97,7 +97,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             let navigationController = UINavigationController(rootViewController: registerViewController)
             navigationController.modalPresentationStyle = .fullScreen
             
-            // Configurar la transición personalizada
+
             let transition = CATransition()
             transition.duration = 0.3
             transition.type = .moveIn

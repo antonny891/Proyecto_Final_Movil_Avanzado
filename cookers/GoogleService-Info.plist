@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>836205443401-gq39tcos5jiocu6japec9m4gbp1upa7b.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.836205443401-gq39tcos5jiocu6japec9m4gbp1upa7b</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAy2bcHS0tiaH_JyGiAkXGQOSFKGCauO5E</string>
 	<key>GCM_SENDER_ID</key>
@@ -26,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:836205443401:ios:61fe2718664f0a2028c298</string>
+	<key>DATABASE_URL</key>
+	<string>https://cookers-71add-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

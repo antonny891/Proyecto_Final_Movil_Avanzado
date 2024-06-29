@@ -4,10 +4,13 @@
 //
 //  Created by Michell Condori on 17/06/24.
 //
-
+voy a hacer push al repositorio, de ahi lo puedes copiar
+ok talvez te molesto un rato para copiar codigo o algo asi
+eres rado? a ok estare documentando lo que hice as
 import UIKit
 import FirebaseCore
-
+import FirebaseAuth
+import GoogleSignIn
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,7 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         return true
     }
-
+    
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+      return GIDSignIn.sharedInstance.handle(url)
+    }
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -26,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
+    
+    
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.

@@ -1,13 +1,13 @@
 //
-//  VerRecetaViewController.swift
+//  MapaViewController.swift
 //  cookers
 //
-//  Created by Kael Dexx on 22/06/24.
+//  Created by Kael Dexx on 28/06/24.
 //
 
 import UIKit
 
-class VerRecetaViewController: UIViewController {
+class MapaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
