@@ -124,7 +124,7 @@ class listarRecetas: UIViewController, UITableViewDataSource, UITableViewDelegat
         if segue.identifier == "editarReceta" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let selectedReceta = allRecetas[indexPath.row]
-                let detailVC = segue.destination as! VerRecetaViewController
+                let detailVC = segue.destination as! EditarRecetaViewController
                 detailVC.receta = selectedReceta
             }
         }

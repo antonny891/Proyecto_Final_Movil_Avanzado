@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>usamos su ubicacion para mostrarle mercados cercanos</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>se usa tu microfono</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

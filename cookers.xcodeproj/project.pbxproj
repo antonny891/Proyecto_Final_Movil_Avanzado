@@ -38,7 +38,7 @@
 		9F49A9942C229F5900C9B555 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F49A9932C229F5900C9B555 /* MainViewController.swift */; };
 		9F49A9962C22B31400C9B555 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F49A9952C22B31400C9B555 /* LoginViewController.swift */; };
 		9F89D5912C2CF0600052F7E1 /* RecetaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F89D5902C2CF0600052F7E1 /* RecetaTableViewCell.swift */; };
-		9FCB5DE42C2642560077788D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCB5DE32C2642560077788D /* SearchViewController.swift */; };
+		9FA97A652C31583E0054D006 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA97A642C31583E0054D006 /* SearchViewController.swift */; };
 		9FE7B93B2C26AF1D00B1CC44 /* EditarRecetaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7B93A2C26AF1D00B1CC44 /* EditarRecetaViewController.swift */; };
 		9FE7B93D2C26AF8700B1CC44 /* VerRecetaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE7B93C2C26AF8700B1CC44 /* VerRecetaViewController.swift */; };
 /* End PBXBuildFile section */
@@ -64,7 +64,7 @@
 		9F49A9932C229F5900C9B555 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9F49A9952C22B31400C9B555 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9F89D5902C2CF0600052F7E1 /* RecetaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecetaTableViewCell.swift; sourceTree = "<group>"; };
-		9FCB5DE32C2642560077788D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		9FA97A642C31583E0054D006 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		9FE7B93A2C26AF1D00B1CC44 /* EditarRecetaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarRecetaViewController.swift; sourceTree = "<group>"; };
 		9FE7B93C2C26AF8700B1CC44 /* VerRecetaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerRecetaViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,7 +131,6 @@
 				9F24E4C52C24ABFF0005FFC7 /* RegisterViewController.swift */,
 				9FE7B93A2C26AF1D00B1CC44 /* EditarRecetaViewController.swift */,
 				9FE7B93C2C26AF8700B1CC44 /* VerRecetaViewController.swift */,
-				9FCB5DE32C2642560077788D /* SearchViewController.swift */,
 				9F24E4C72C24F0210005FFC7 /* HomeViewController.swift */,
 				9F49A9932C229F5900C9B555 /* MainViewController.swift */,
 				9F49A9952C22B31400C9B555 /* LoginViewController.swift */,
@@ -142,6 +141,7 @@
 				9F32D3452C2F951F004EEA0B /* PerfilViewController.swift */,
 				9F32D3472C2FB217004EEA0B /* MapaViewController.swift */,
 				9F32D3552C30575F004EEA0B /* listarRecetas.swift */,
+				9FA97A642C31583E0054D006 /* SearchViewController.swift */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -249,10 +249,10 @@
 				9FE7B93B2C26AF1D00B1CC44 /* EditarRecetaViewController.swift in Sources */,
 				9F320DF62C2A0895002284BA /* crearReceta.swift in Sources */,
 				9F32D3442C2F829F004EEA0B /* TransicionDesvanecimiento.swift in Sources */,
+				9FA97A652C31583E0054D006 /* SearchViewController.swift in Sources */,
 				9F49A9962C22B31400C9B555 /* LoginViewController.swift in Sources */,
 				12C5065E2C20E65E0096AE39 /* AppDelegate.swift in Sources */,
 				9F32D3562C30575F004EEA0B /* listarRecetas.swift in Sources */,
-				9FCB5DE42C2642560077788D /* SearchViewController.swift in Sources */,
 				9FE7B93D2C26AF8700B1CC44 /* VerRecetaViewController.swift in Sources */,
 				12C506602C20E65E0096AE39 /* SceneDelegate.swift in Sources */,
 				9F24E4C62C24ABFF0005FFC7 /* RegisterViewController.swift in Sources */,

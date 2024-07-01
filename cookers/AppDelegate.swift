@@ -4,13 +4,12 @@
 //
 //  Created by Michell Condori on 17/06/24.
 //
-voy a hacer push al repositorio, de ahi lo puedes copiar
-ok talvez te molesto un rato para copiar codigo o algo asi
-eres rado? a ok estare documentando lo que hice as
+
 import UIKit
 import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

@@ -6,24 +6,38 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class MapaViewController: UIViewController {
+class MapaViewController: UIViewController, CLLocationManagerDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+    @IBOutlet weak var mapView: MKMapView!
     
+    let locationManager = CLLocationManager()
 
-    /*
-    // MARK: - Navigation
+        override func viewDidLoad() {
+            super.viewDidLoad()
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+            // Solicitar permisos de ubicación
+            locationManager.delegate = self
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+
+            // Configurar el mapa
+            mapView.showsUserLocation = true
+        }
+
+        // Delegate method para actualizar la ubicación del usuario
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+            if let location = locations.first {
+                let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                let region = MKCoordinateRegion(center: location.coordinate, span: span)
+                mapView.setRegion(region, animated: true)
+            }
+        }
+
+        // Delegate method para manejar errores de ubicación
+        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+            print("Failed to find user's location: \(error.localizedDescription)")
+        }
     }
-    */
-
-}

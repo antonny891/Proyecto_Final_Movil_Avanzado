@@ -20,14 +20,14 @@ class RegisterViewController: UIViewController, UIViewControllerTransitioningDel
     }
     
     @IBAction func btnpregunta(_ sender: Any) {
-        // Aquí puedes manejar la lógica para el botón de pregunta de sesión si es necesario
+       
     }
     
     @IBAction func btnregister(_ sender: Any) {
         guard let nombre = txtnombre.text, !nombre.isEmpty,
               let email = txtemail.text, !email.isEmpty,
               let password = txtpassword.text, !password.isEmpty else {
-            // Manejar caso de campos vacíos
+            
             showAlert(title: "Error", message: "Por favor, completa todos los campos")
             return
         }

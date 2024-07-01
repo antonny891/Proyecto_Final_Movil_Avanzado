@@ -9,8 +9,9 @@ import UIKit
 import FirebaseAuth
 import FirebaseStorage
 import Firebase
+import AVFoundation
 
-class crearReceta: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class crearReceta: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     var imagePicker = UIImagePickerController()
 
@@ -20,6 +21,14 @@ class crearReceta: UIViewController, UIImagePickerControllerDelegate, UINavigati
     @IBOutlet weak var tipo: UITextField!
     @IBOutlet weak var ingredientes: UITextField!
     @IBOutlet weak var preparacion: UITextField!
+    @IBOutlet weak var reproducirButton: UIButton!
+    @IBOutlet weak var grabarButton: UIButton!
+    
+    //VARS
+    var audioRecorder: AVAudioRecorder!
+    var audioPlayer: AVAudioPlayer!
+    var recordingSession: AVAudioSession!
+    var audioURL: URL?
     
     //ACTIONS
     @IBAction func publicarButton(_ sender: Any) {
@@ -82,10 +91,32 @@ class crearReceta: UIViewController, UIImagePickerControllerDelegate, UINavigati
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func grabarTapped(_ sender: Any) {
+        if audioRecorder!.isRecording {
+            audioRecorder?.stop()
+            grabarButton.setTitle("Grabar", for: .normal)
+            reproducirButton.isEnabled = true
+        } else {
+            audioRecorder?.record()
+            grabarButton.setTitle("Detener", for: .normal)
+            reproducirButton.isEnabled = false
+        }
+    }
+    
+    @IBAction func reproducirTapped(_ sender: Any) {
+        do {
+            try audioPlayer = AVAudioPlayer(contentsOf: audioURL!)
+            audioPlayer?.play()
+            print("Reproduciendo")
+        } catch {
+            print("Error al reproducir audio: \(error.localizedDescription)")
+        }
+    }
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         imagePicker.delegate = self
-
+        configurarGrabacion()
     }
     
     
@@ -98,7 +129,6 @@ class crearReceta: UIViewController, UIImagePickerControllerDelegate, UINavigati
         present(alertController, animated: true, completion: nil)
     }
     
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         imagen.image = image
@@ -107,5 +137,26 @@ class crearReceta: UIViewController, UIImagePickerControllerDelegate, UINavigati
         
     }
     
-
+    func configurarGrabacion() {
+        do {
+            let session = AVAudioSession.sharedInstance()
+            try session.setCategory(.playAndRecord, mode: .default, options: [])
+            try session.overrideOutputAudioPort(.speaker)
+            try session.setActive(true)
+                
+            let basePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+            let pathComponents = [basePath, "audio.m4a"]
+            audioURL = NSURL.fileURL(withPathComponents: pathComponents)!
+                
+            var settings: [String: AnyObject] = [:]
+            settings[AVFormatIDKey] = Int(kAudioFormatMPEG4AAC) as AnyObject
+            settings[AVSampleRateKey] = 44100.0 as AnyObject
+            settings[AVNumberOfChannelsKey] = 2 as AnyObject
+                
+            audioRecorder = try AVAudioRecorder(url: audioURL!, settings: settings)
+            audioRecorder?.prepareToRecord()
+        } catch let error as NSError {
+            print(error)
+        }
+    }
 }
