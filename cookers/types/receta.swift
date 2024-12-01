@@ -16,4 +16,6 @@ struct Receta{
     var ingredientes : String
     var preparacion : String
     var userId : String
+    
+    
 }
